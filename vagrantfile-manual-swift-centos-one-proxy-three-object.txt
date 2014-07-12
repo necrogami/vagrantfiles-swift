@@ -1,0 +1,105 @@
+# -*- mode: ruby -*-
+
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.require_version ">= 1.5.0"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "centos-6.5-x86_64"
+  config.vm.box_url = "http://public.thornelabs.net/centos-6.5-x86_64.box"
+
+  config.vm.provider "vmware_fusion" do |v, override|
+    override.vm.box = "centos-6.5-x86_64"
+    override.vm.box_url = "http://public.thornelabs.net/centos-6.5-x86_64.vmware.box"
+  end
+
+  # Turn off shared folders
+  config.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+
+  # Begin proxy1
+  config.vm.define "proxy1" do |proxy1_config|
+    proxy1_config.vm.hostname = "proxy1"
+
+    # eth1
+    proxy1_config.vm.network "private_network", ip: "192.168.236.50"
+    # eth2
+    proxy1_config.vm.network "private_network", ip: "192.168.252.50"
+
+    proxy1_config.vm.provider "vmware_fusion" do |v|
+        v.vmx["memsize"] = "768"
+        v.vmx["numvcpus"] = "1"
+    end
+
+    proxy1_config.vm.provider "virtualbox" do |v|
+        v.customize ["modifyvm", :id, "--memory", "768"]
+        v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+  # End proxy1
+
+  # Begin object1
+  config.vm.define "object1" do |object1_config|
+    object1_config.vm.hostname = "object1"
+
+    # eth1
+    object1_config.vm.network "private_network", ip: "192.168.236.60"
+    # eth2
+    object1_config.vm.network "private_network", ip: "192.168.252.60"
+
+    object1_config.vm.provider "vmware_fusion" do |v|
+        v.vmx["memsize"] = "768"
+        v.vmx["numvcpus"] = "1"
+    end
+
+    object1_config.vm.provider "virtualbox" do |v|
+        v.customize ["modifyvm", :id, "--memory", "768"]
+        v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+  # End object1
+
+  # Begin object2
+  config.vm.define "object2" do |object2_config|
+    object2_config.vm.hostname = "object2"
+
+    # eth1
+    object2_config.vm.network "private_network", ip: "192.168.236.61"
+    # eth2
+    object2_config.vm.network "private_network", ip: "192.168.252.61"
+
+    object2_config.vm.provider "vmware_fusion" do |v|
+        v.vmx["memsize"] = "768"
+        v.vmx["numvcpus"] = "1"
+    end
+
+    object2_config.vm.provider "virtualbox" do |v|
+        v.customize ["modifyvm", :id, "--memory", "768"]
+        v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+  # End object2
+
+  # Begin object3
+  config.vm.define "object3" do |object3_config|
+    object3_config.vm.hostname = "object3"
+
+    # eth1
+    object3_config.vm.network "private_network", ip: "192.168.236.62"
+    # eth2
+    object3_config.vm.network "private_network", ip: "192.168.252.62"
+
+    object3_config.vm.provider "vmware_fusion" do |v|
+        v.vmx["memsize"] = "768"
+        v.vmx["numvcpus"] = "1"
+    end
+
+    object3_config.vm.provider "virtualbox" do |v|
+        v.customize ["modifyvm", :id, "--memory", "768"]
+        v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+  # End object3
+end
