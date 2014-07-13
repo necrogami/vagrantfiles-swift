@@ -24,9 +24,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     proxy1_config.vm.hostname = "proxy1"
 
     # eth1
-    proxy1_config.vm.network "private_network", ip: "192.168.236.50"
+    proxy1_config.vm.network "private_network", ip: "192.168.236.60"
     # eth2
-    proxy1_config.vm.network "private_network", ip: "192.168.252.50"
+    proxy1_config.vm.network "private_network", ip: "192.168.252.60"
 
     proxy1_config.vm.provider "vmware_fusion" do |v|
         v.vmx["memsize"] = "768"
@@ -45,9 +45,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     object1_config.vm.hostname = "object1"
 
     # eth1
-    object1_config.vm.network "private_network", ip: "192.168.236.60"
+    object1_config.vm.network "private_network", ip: "192.168.236.70"
     # eth2
-    object1_config.vm.network "private_network", ip: "192.168.252.60"
+    object1_config.vm.network "private_network", ip: "192.168.252.70"
 
     object1_config.vm.provider "vmware_fusion" do |v|
         v.vmx["memsize"] = "768"
@@ -66,9 +66,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     object2_config.vm.hostname = "object2"
 
     # eth1
-    object2_config.vm.network "private_network", ip: "192.168.236.61"
+    object2_config.vm.network "private_network", ip: "192.168.236.71"
     # eth2
-    object2_config.vm.network "private_network", ip: "192.168.252.61"
+    object2_config.vm.network "private_network", ip: "192.168.252.71"
 
     object2_config.vm.provider "vmware_fusion" do |v|
         v.vmx["memsize"] = "768"
@@ -87,9 +87,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     object3_config.vm.hostname = "object3"
 
     # eth1
-    object3_config.vm.network "private_network", ip: "192.168.236.62"
+    object3_config.vm.network "private_network", ip: "192.168.236.72"
     # eth2
-    object3_config.vm.network "private_network", ip: "192.168.252.62"
+    object3_config.vm.network "private_network", ip: "192.168.252.72"
 
     object3_config.vm.provider "vmware_fusion" do |v|
         v.vmx["memsize"] = "768"
