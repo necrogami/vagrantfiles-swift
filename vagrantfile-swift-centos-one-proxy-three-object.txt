@@ -353,7 +353,6 @@ chown -R swift:swift /etc/swift
 
 mkdir -p /srv/node/loop2
 
-# Configure the loopback storage file
 dd if=/dev/zero of=/mnt/object-volume1 bs=1 count=0 seek=10G
 losetup /dev/loop2 /mnt/object-volume1
 
@@ -361,7 +360,6 @@ mkfs.xfs -i size=1024 /dev/loop2
 echo "/dev/loop2 /srv/node/loop2 xfs noatime,nodiratime,nobarrier,logbufs=8 0 0" >> /etc/fstab
 mount -a
 
-# Set permissions on the storage directory
 chown swift:swift /srv/node/loop2
 
 for service in openstack-swift-object openstack-swift-object-replicator openstack-swift-object-updater openstack-swift-object-auditor openstack-swift-container openstack-swift-container-replicator openstack-swift-container-updater openstack-swift-container-auditor openstack-swift-account openstack-swift-account-replicator openstack-swift-account-reaper openstack-swift-account-auditor; do service $service start; chkconfig $service on; done

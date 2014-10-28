@@ -53,6 +53,37 @@ boxes = [
 
 #####################
 #
+# Common Script Begin
+#
+#####################
+
+$commonscript = <<COMMONSCRIPT
+# Set verbose
+set -v
+
+# Set exit on error
+set -e
+
+# Silly Ubuntu 12.04 doesn't have the
+# --stdin option in the passwd utility
+echo root:vagrant | chpasswd
+
+cat << EOF >> /etc/hosts
+192.168.236.60 proxy1
+192.168.236.70 object1
+192.168.236.71 object2
+192.168.236.72 object3
+EOF
+COMMONSCRIPT
+
+#####################
+#
+# Common Script End
+#
+#####################
+
+#####################
+#
 # Virtual Machine Definition Begin
 #
 #####################
@@ -73,6 +104,8 @@ Vagrant.configure(2) do |config|
   boxes.each do |opts|
     config.vm.define opts[:name] do |config|
       config.vm.hostname = opts[:name]
+
+      config.vm.provision :shell, inline: $commonscript
 
       config.vm.network :private_network, ip: opts[:eth1]
       config.vm.network :private_network, ip: opts[:eth2]
