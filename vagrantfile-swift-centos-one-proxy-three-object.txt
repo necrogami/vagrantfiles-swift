@@ -32,7 +32,7 @@ boxes = [
         :eth1 => "192.168.236.71",
         :eth2 => "192.168.252.71",
         :mem => "512",
-        :cpu => "1", 
+        :cpu => "1",
         :nodetype => "object"
     },
     {
@@ -53,12 +53,8 @@ boxes = [
 
 #####################
 #
-# Build Scripts Begin
-#
-#####################
-
-#####################
 # Common Script Begin
+#
 #####################
 
 $commonscript = <<COMMONSCRIPT
@@ -87,11 +83,15 @@ echo export ETH2_IP=$ETH2_IP > /etc/profile.d/eth2-ip.sh
 COMMONSCRIPT
 
 #####################
+#
 # Common Script End
+#
 #####################
 
 #####################
+#
 # Proxy Script Begin
+#
 #####################
 
 $proxyscript = <<PROXYSCRIPT
@@ -183,11 +183,15 @@ service openstack-swift-proxy start
 PROXYSCRIPT
 
 #####################
+#
 # Proxy Script End
+#
 #####################
 
 #####################
+#
 # Object Script Begin
+#
 #####################
 
 $objectscript = <<OBJECTSCRIPT
@@ -371,12 +375,8 @@ EOF
 OBJECTSCRIPT
 
 #####################
-# Object Script Begin
-#####################
-
-#####################
 #
-# Build Scripts End
+# Object Script End
 #
 #####################
 
